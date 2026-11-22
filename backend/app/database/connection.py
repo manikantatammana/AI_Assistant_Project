@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 from pymongo import MongoClient
+import certifi
 from dotenv import load_dotenv
 
 
@@ -21,10 +22,11 @@ if not MONGODB_URL:
     raise ValueError("MongoDB URL is missing in .env")
 
 
-# Connect to MongoDB
+# Connect to MongoDB with certifi CA bundle for secure SSL/TLS validation in cloud containers (Render/Linux)
 client = MongoClient(
     MONGODB_URL,
-    serverSelectionTimeoutMS=5000
+    serverSelectionTimeoutMS=5000,
+    tlsCAFile=certifi.where()
 )
 
 

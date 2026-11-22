@@ -1,8 +1,9 @@
 
 fastapi
 uvicorn
-pymongo
+pymongo[srv]
 python-dotenv
 python-multipart
 google-genai
 pypdf
+certifi
